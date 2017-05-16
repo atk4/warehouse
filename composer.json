@@ -1,6 +1,7 @@
 {
+    "minimum-stability": "dev",
     "require": {
-        "atk4/ui": "dev-develop"
+        "atk4/ui": "dev-feature/form-improvements-hasmany"
     },
     "autoload": {
         "psr-4": {"": "src/"}

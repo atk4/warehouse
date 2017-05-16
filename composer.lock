@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "051b13de4815f0dad135bd6f4ac950a8",
-    "content-hash": "d05cdea1e1a636575abf226e5ef2c376",
+    "hash": "eb69d27e1498621d662ae345b35b9ebc",
+    "content-hash": "92b7aaa35f8f6d991bc0e61f7ef9f976",
     "packages": [
         {
             "name": "atk4/core",
-            "version": "1.2.2",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/atk4/core.git",
-                "reference": "5aaf21b54845591fe05e57a44b0e6bb6adb215f2"
+                "reference": "efa29797117bb1bd6848a8f2d94417ed0d5b8bfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atk4/core/zipball/5aaf21b54845591fe05e57a44b0e6bb6adb215f2",
-                "reference": "5aaf21b54845591fe05e57a44b0e6bb6adb215f2",
+                "url": "https://api.github.com/repos/atk4/core/zipball/efa29797117bb1bd6848a8f2d94417ed0d5b8bfa",
+                "reference": "efa29797117bb1bd6848a8f2d94417ed0d5b8bfa",
                 "shasum": ""
             },
             "require": {
@@ -53,29 +53,29 @@
                 "php",
                 "trains"
             ],
-            "time": "2017-04-13 01:51:36"
+            "time": "2017-05-05 08:55:37"
         },
         {
             "name": "atk4/data",
-            "version": "1.1.16",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/atk4/data.git",
-                "reference": "c6674bccb565b93db0f90ea142a59f700038f471"
+                "reference": "5ff42f98198f2a4e218e21a435b827865f5c3184"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atk4/data/zipball/c6674bccb565b93db0f90ea142a59f700038f471",
-                "reference": "c6674bccb565b93db0f90ea142a59f700038f471",
+                "url": "https://api.github.com/repos/atk4/data/zipball/5ff42f98198f2a4e218e21a435b827865f5c3184",
+                "reference": "5ff42f98198f2a4e218e21a435b827865f5c3184",
                 "shasum": ""
             },
             "require": {
-                "atk4/core": "^1.2",
-                "atk4/dsql": "^1.1",
+                "atk4/core": "dev-develop",
+                "atk4/dsql": "dev-develop",
                 "php": ">=5.6.0"
             },
             "require-dev": {
-                "atk4/schema": "*",
+                "atk4/schema": "dev-develop",
                 "codeclimate/php-test-reporter": "*",
                 "phpunit/phpunit": "<6"
             },
@@ -110,24 +110,24 @@
                 "query",
                 "sql"
             ],
-            "time": "2017-04-28 09:00:39"
+            "time": "2017-04-29 23:01:17"
         },
         {
             "name": "atk4/dsql",
-            "version": "1.1.4",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/atk4/dsql.git",
-                "reference": "576bba88b0ed39dc99a9aa16e69d10a884237f30"
+                "reference": "df644b1eb4b6bb9369e6a2c2f56edda751035a7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atk4/dsql/zipball/576bba88b0ed39dc99a9aa16e69d10a884237f30",
-                "reference": "576bba88b0ed39dc99a9aa16e69d10a884237f30",
+                "url": "https://api.github.com/repos/atk4/dsql/zipball/df644b1eb4b6bb9369e6a2c2f56edda751035a7d",
+                "reference": "df644b1eb4b6bb9369e6a2c2f56edda751035a7d",
                 "shasum": ""
             },
             "require": {
-                "atk4/core": "^1.2",
+                "atk4/core": "dev-develop",
                 "php": ">=5.6.0"
             },
             "require-dev": {
@@ -168,21 +168,21 @@
         },
         {
             "name": "atk4/ui",
-            "version": "1.1.1",
+            "version": "dev-feature/form-improvements-hasmany",
             "source": {
                 "type": "git",
                 "url": "https://github.com/atk4/ui.git",
-                "reference": "a93bf2bdc45643af57e2259745b8e2e6f6fe9688"
+                "reference": "d15c9debd0c0e2c9759b98f5d6eb526377541072"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atk4/ui/zipball/a93bf2bdc45643af57e2259745b8e2e6f6fe9688",
-                "reference": "a93bf2bdc45643af57e2259745b8e2e6f6fe9688",
+                "url": "https://api.github.com/repos/atk4/ui/zipball/d15c9debd0c0e2c9759b98f5d6eb526377541072",
+                "reference": "d15c9debd0c0e2c9759b98f5d6eb526377541072",
                 "shasum": ""
             },
             "require": {
-                "atk4/core": "^1.2",
-                "atk4/data": "^1.1",
+                "atk4/core": "dev-develop",
+                "atk4/data": "dev-develop",
                 "fzaninotto/faker": "*",
                 "php": ">=5.6.0"
             },
@@ -222,20 +222,20 @@
                 "web",
                 "widget"
             ],
-            "time": "2017-04-28 22:04:23"
+            "time": "2017-05-16 12:10:43"
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.6.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123"
+                "reference": "a013415201d4f6b41cef7cf629b7ae91c8df2c32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/44f9a286a04b80c76a4e5fb7aad8bb539b920123",
-                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/a013415201d4f6b41cef7cf629b7ae91c8df2c32",
+                "reference": "a013415201d4f6b41cef7cf629b7ae91c8df2c32",
                 "shasum": ""
             },
             "require": {
@@ -243,12 +243,14 @@
             },
             "require-dev": {
                 "ext-intl": "*",
-                "phpunit/phpunit": "~4.0",
+                "phpunit/phpunit": "~4.0||~5.0",
                 "squizlabs/php_codesniffer": "~1.5"
             },
             "type": "library",
             "extra": {
-                "branch-alias": []
+                "branch-alias": {
+                    "dev-master": "1.6.x-dev"
+                }
             },
             "autoload": {
                 "psr-4": {
@@ -270,13 +272,15 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2016-04-29 12:21:54"
+            "time": "2017-05-15 16:09:28"
         }
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "atk4/ui": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
