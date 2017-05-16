@@ -1,6 +1,6 @@
 {
     "require": {
-        "atk4/ui": "^1.1"
+        "atk4/ui": "dev-develop"
     },
     "autoload": {
         "psr-4": {"": "src/"}

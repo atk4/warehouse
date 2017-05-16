@@ -2,4 +2,4 @@
 include'vendor/autoload.php';
 
 $app = new Warehouse(false);
-$app->layout->add(new ui\loginForm());
+$app->layout->add(new ui\LoginForm());
