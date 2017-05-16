@@ -61,12 +61,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/atk4/data.git",
-                "reference": "5ff42f98198f2a4e218e21a435b827865f5c3184"
+                "reference": "bd5a9c9533be96f4548a901723d0f6c354ed4bab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atk4/data/zipball/5ff42f98198f2a4e218e21a435b827865f5c3184",
-                "reference": "5ff42f98198f2a4e218e21a435b827865f5c3184",
+                "url": "https://api.github.com/repos/atk4/data/zipball/bd5a9c9533be96f4548a901723d0f6c354ed4bab",
+                "reference": "bd5a9c9533be96f4548a901723d0f6c354ed4bab",
                 "shasum": ""
             },
             "require": {
@@ -110,7 +110,7 @@
                 "query",
                 "sql"
             ],
-            "time": "2017-04-29 23:01:17"
+            "time": "2017-05-16 12:12:50"
         },
         {
             "name": "atk4/dsql",
