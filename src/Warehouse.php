@@ -10,7 +10,7 @@ class Warehouse extends \atk4\ui\App
 
 
     function __construct($auth = true) {
-        parent::__construct('Warehouse App v0.1');
+        parent::__construct('Warehouse App v0.2');
 
 
         // Connect to database (Heroku or Local)

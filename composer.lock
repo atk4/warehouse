@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eb69d27e1498621d662ae345b35b9ebc",
-    "content-hash": "92b7aaa35f8f6d991bc0e61f7ef9f976",
+    "content-hash": "9d37c3dadbaec45ff8158c431d5aaf6b",
     "packages": [
         {
             "name": "atk4/core",
@@ -61,12 +60,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/atk4/data.git",
-                "reference": "bd5a9c9533be96f4548a901723d0f6c354ed4bab"
+                "reference": "10c381ebbdd758aa5f88de448acd2c77965050e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atk4/data/zipball/bd5a9c9533be96f4548a901723d0f6c354ed4bab",
-                "reference": "bd5a9c9533be96f4548a901723d0f6c354ed4bab",
+                "url": "https://api.github.com/repos/atk4/data/zipball/10c381ebbdd758aa5f88de448acd2c77965050e7",
+                "reference": "10c381ebbdd758aa5f88de448acd2c77965050e7",
                 "shasum": ""
             },
             "require": {
@@ -110,7 +109,7 @@
                 "query",
                 "sql"
             ],
-            "time": "2017-05-16 12:12:50"
+            "time": "2017-05-16 21:38:53"
         },
         {
             "name": "atk4/dsql",
@@ -168,16 +167,16 @@
         },
         {
             "name": "atk4/ui",
-            "version": "dev-feature/form-improvements-hasmany",
+            "version": "dev-develop-ui-mk2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/atk4/ui.git",
-                "reference": "d15c9debd0c0e2c9759b98f5d6eb526377541072"
+                "reference": "2fc75a5e3f7098ea768148970d6cac5891492f50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atk4/ui/zipball/d15c9debd0c0e2c9759b98f5d6eb526377541072",
-                "reference": "d15c9debd0c0e2c9759b98f5d6eb526377541072",
+                "url": "https://api.github.com/repos/atk4/ui/zipball/2fc75a5e3f7098ea768148970d6cac5891492f50",
+                "reference": "2fc75a5e3f7098ea768148970d6cac5891492f50",
                 "shasum": ""
             },
             "require": {
@@ -222,7 +221,7 @@
                 "web",
                 "widget"
             ],
-            "time": "2017-05-16 12:10:43"
+            "time": "2017-05-23 13:55:05"
         },
         {
             "name": "fzaninotto/faker",

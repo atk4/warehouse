@@ -18,7 +18,8 @@ class Article extends Model {
         $this->addField('sale_price', ['type'=>'money']);
         $this->addField('vat_rate', ['enum'=>$this->app->vat_rates]);
 
-        $this->hasMany('Stock', new Stock());
-        $this->addExpression('stock', '28');
+        $this->hasMany('Stock', new Stock())
+            ->addField('stock', ['aggregate'=>'sum', 'field'=>'qty_increase']);
+        //$this->addExpression('stock', '28');
     }
 }
