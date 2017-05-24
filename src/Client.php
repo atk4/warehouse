@@ -1,9 +1,9 @@
 <?php
-class Client extends Contact {
+class Client extends Partner {
 
     function init()
     {
         parent::init();
-        $this->addCondition('type', 'client');
+        $this->addCondition('is_client', true);
     }
 }

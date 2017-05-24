@@ -1,9 +1,9 @@
 <?php
-class Supplier extends Contact {
+class Supplier extends Partner {
 
     function init()
     {
         parent::init();
-        $this->addCondition('type', 'supplier');
+        $this->addCondition('is_supplier', true);
     }
 }

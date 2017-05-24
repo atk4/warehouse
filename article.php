@@ -27,14 +27,14 @@ $c2->add(['Header', 'Recent Subtractions']);
 $button_bar->add(new ui\EditButton(['Adjust Stock', 'action'=>[
     new \atk4\ui\jsReload($c),
     new \atk4\ui\jsReload($statistic),
-]]))->setModel($article->ref('Stock'));
+]]))->setModel($article->ref('Stock')->addCondition('type', 'inventory'));
 
 $c1->add(['Table', 'very compact very basic small'])
-    ->setModel($article->ref('Stock')->addCondition('qty_increase','>=',0), ['date', 'description', 'qty_increase'])
+    ->setModel($article->ref('Stock')->addCondition('qty_increase','>=',0), ['date', 'type', 'description', 'qty_increase'])
     ->setLimit(5)
     ->setOrder('date desc');
 $c2->add(['Table', 'very compact very basic small'])
-    ->setModel($article->ref('Stock')->addCondition('qty_increase','<',0), ['date', 'description', 'qty_increase'])
+    ->setModel($article->ref('Stock')->addCondition('qty_increase','<',0), ['date', 'type', 'description', 'qty_increase'])
     ->setLimit(5)
     ->setOrder('date desc');
 

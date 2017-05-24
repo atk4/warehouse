@@ -5,6 +5,8 @@
  */
 class Line extends Model {
 
+    public $table='line';
+
     function init() {
         parent::init();
 
@@ -16,6 +18,9 @@ class Line extends Model {
         $this->addField('qty', ['type'=>'integer']);
         $this->addField('price', ['type'=>'money']);
         $this->addField('vat_rate', ['enum'=>$this->app->vat_rates]);
+
+        $this->addExpression('net', ['[qty] * [price]', 'type'=>'money']);
+        $this->addExpression('total', ['[qty] * [price] * (1+vat_rate)', 'type'=>'money']);
     }
 
 }

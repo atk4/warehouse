@@ -22,7 +22,7 @@ class EditButton extends \atk4\ui\Button
 
         $vp = $this->add('VirtualPage');
         $vp->set(function($p) use($m, $fields) {
-            $f = $p->add('Form');
+            $f = $p->add(['Form', 'layout'=>'FormLayout/Columns']);
             $f->setModel($m, $fields);
             $f->onSubmit(function($f) {
                 $f->model->save();
@@ -32,7 +32,7 @@ class EditButton extends \atk4\ui\Button
         });
 
 
-        $this->on('click', new \atk4\ui\jsModal($this->content, $vp));
+        $this->on('click', new \atk4\ui\jsModal($this->content.' '.get_class($m).' '.$m[$m->title_field], $vp));
     }
 }
 

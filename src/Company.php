@@ -7,6 +7,6 @@ class Company extends \atk4\data\Model {
         parent::init();
 
         $this->addField('name');
-        $this->addField('reg_no');
+        //$this->addField('reg_no');
     }
 }

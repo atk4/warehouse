@@ -2,6 +2,8 @@
 class Document extends Model {
     public $table = 'document';
 
+    public $title_field = 'ref';
+
     function init()
     {
         parent::init();

@@ -1,0 +1,11 @@
+div(id="{$_id}" class="{_ui}ui{/} {$class} {_class}{/}")
+  | {has_title}
+  .content: .header {$title}
+  | {/}
+  .content {$Content}
+  | {has_buttons}
+  .ui.bottom.attached.basic.buttons
+    | {Buttons}
+    button.ui.button Work
+    | {/}
+  | {/has_buttons}

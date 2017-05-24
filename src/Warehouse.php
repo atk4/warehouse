@@ -54,10 +54,54 @@ class Warehouse extends \atk4\ui\App
 
         $this->initLayout('Admin');
 
-        $this->layout->leftMenu->addItem(['Stock', 'icon'=>'barcode'], 'stock.php');
+        $this->layout->leftMenu->addItem(['Home', 'icon'=>'home'], ['dashboard']);
+        $this->layout->leftMenu->addItem(['Partners', 'icon'=>'users'], ['partners']);
 
-        $this->layout->leftMenu->addItem(['Purchases', 'icon'=>'shipping'], 'document.php?type=purchase');
+        // Section of our application dealing with current stock flow and history
+        $m = $this->layout->leftMenu->addGroup(['Stock', 'icon'=>'barcode']);
+        $m->addItem('Current Stock', ['stock']);
 
-        $this->layout->leftMenu->addItem(['Sales', 'icon'=>'shop'], 'document.php?type=sale');
+        // manage.php contains a CRUD which will work with most basic Models
+        $m->addItem('Brands', ['manage', 'model'=>'Brand']);
+        $m->addItem('Categories', ['manage', 'model'=>'Category']);
+
+        // production uses a custom page, we want some freedom, so, separate page
+        $m->addItem('Production', ['production']);
+
+        // Stock model changes amount of stocked articles, but can be one of several types.
+        // Inventory and write-off can be created by user directly, but Effect is created
+        // automatically in response to actions on invoices.
+        $m->addItem('Inventory', ['stock', 'type'=>'inventory']);
+        $m->addItem('Write-off', ['stock', 'type'=>'write-off']);
+
+        $m->addItem('Effect',    ['effect']);      
+
+        // Supply section deals with invoices and payments, but will also affect stock
+        $m = $this->layout->leftMenu->addGroup(['Supply', 'icon'=>'shipping']);
+        $m->addItem('At a glance', ['supply']);
+
+        // Suppliers is a easy and manageable entity
+        $m->addItem('Suppliers', ['manage', 'model'=>'Supplier']);
+
+        // Invoices and Credit notes will create Effect documents
+        // automatically when changing status. Otherwise, they are same as prepaid bills
+        $m->addItem('Invoices', ['docs',    'type'=>'purchase']);
+
+        // Invoice can be converted into credit note
+        $m->addItem('Credit Notes', ['docs','type'=>'credit-note', 'dir'=>'supply']);
+
+        $m->addItem('Reports', ['supplier-reports']);
+
+        $m = $this->layout->leftMenu->addGroup(['Sales', 'icon'=>'shop']);
+        $m->addItem('At a glance', ['sales']);
+
+        $m->addItem('Clients', ['manage', 'model'=>'Client']);
+
+        // Prepaid bill does not have effect on stock but can be converted into invoice
+        $m->addItem('Prepaid Bills', ['docs', 'type'=>'prepaid-bill', 'dir'=>'sale']);
+
+        // Invoices 
+        $m->addItem('Invoices', ['docs',    'type'=>'sale']);
+        $m->addItem('Credit Notes', ['docs','type'=>'credit-note', 'dir'=>'sale']);
     }
 }
