@@ -5,7 +5,7 @@ class Warehouse extends \atk4\ui\App
     public $user;
     public $company;
 
-    public $vat_rates = ['21.1', '13.0', '0'];
+    public $vat_rates = ['21.0', '10.0', '0'];
     public $currencies = ['USD','GBP','EUR'];
 
 
@@ -66,7 +66,6 @@ class Warehouse extends \atk4\ui\App
         $m->addItem('Current Stock', ['stock']);
 
         // manage.php contains a CRUD which will work with most basic Models
-        $m->addItem('Brands', ['manage', 'model'=>'Brand']);
         $m->addItem('Categories', ['manage', 'model'=>'Category']);
 
         // production uses a custom page, we want some freedom, so, separate page
