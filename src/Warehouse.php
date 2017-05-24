@@ -57,6 +57,10 @@ class Warehouse extends \atk4\ui\App
         $this->layout->leftMenu->addItem(['Home', 'icon'=>'home'], ['dashboard']);
         $this->layout->leftMenu->addItem(['Partners', 'icon'=>'users'], ['partners']);
 
+        $mr = $this->layout->menu->addMenuRight();
+        $mr ->addItem([$this->user['email'], 'icon'=>'user']);
+        $mr ->addItem(['Logout', 'icon'=>'sign out'], ['logout']);
+
         // Section of our application dealing with current stock flow and history
         $m = $this->layout->leftMenu->addGroup(['Stock', 'icon'=>'barcode']);
         $m->addItem('Current Stock', ['stock']);
