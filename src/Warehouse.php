@@ -66,19 +66,19 @@ class Warehouse extends \atk4\ui\App
         $m->addItem('Categories', ['manage', 'model'=>'Category']);
 
         // production uses a custom page, we want some freedom, so, separate page
-        $m->addItem('Production', ['production']);
+        $m->addItem(['Production', 'label'=>'coming soon'], ['production']);
 
         // Stock model changes amount of stocked articles, but can be one of several types.
         // Inventory and write-off can be created by user directly, but Effect is created
         // automatically in response to actions on invoices.
-        $m->addItem('Inventory', ['stock', 'type'=>'inventory']);
-        $m->addItem('Write-off', ['stock', 'type'=>'write-off']);
+        //$m->addItem(['Inventory', 'label'=>'coming soon'], ['stock', 'type'=>'inventory']);
+        $m->addItem(['Write-off', 'label'=>'coming soon'], ['stock', 'type'=>'write-off']);
 
-        $m->addItem('Effect',    ['effect']);      
+        $m->addItem(['Effect', 'label'=>'coming soon'],    ['effect']);      
 
         // Supply section deals with invoices and payments, but will also affect stock
         $m = $this->layout->leftMenu->addGroup(['Supply', 'icon'=>'shipping']);
-        $m->addItem('At a glance', ['supply']);
+        $m->addItem(['At a glance', 'label'=>'coming soon'], ['supply']);
 
         // Suppliers is a easy and manageable entity
         $m->addItem('Suppliers', ['manage', 'model'=>'Supplier']);
@@ -88,20 +88,20 @@ class Warehouse extends \atk4\ui\App
         $m->addItem('Invoices', ['docs',    'type'=>'purchase']);
 
         // Invoice can be converted into credit note
-        $m->addItem('Credit Notes', ['docs','type'=>'credit-note', 'dir'=>'supply']);
+        $m->addItem(['Credit Notes', 'label'=>'coming soon'], ['docs','type'=>'credit-note', 'dir'=>'supply']);
 
-        $m->addItem('Reports', ['supplier-reports']);
+        $m->addItem(['Reports', 'label'=>'coming soon'], ['supplier-reports']);
 
         $m = $this->layout->leftMenu->addGroup(['Sales', 'icon'=>'shop']);
-        $m->addItem('At a glance', ['sales']);
+        $m->addItem(['At a glance', 'label'=>'coming soon'], ['sales']);
 
         $m->addItem('Clients', ['manage', 'model'=>'Client']);
 
         // Prepaid bill does not have effect on stock but can be converted into invoice
-        $m->addItem('Prepaid Bills', ['docs', 'type'=>'prepaid-bill', 'dir'=>'sale']);
+        $m->addItem(['Prepaid Bills', 'label'=>'coming soon'], ['docs', 'type'=>'prepaid-bill', 'dir'=>'sale']);
 
         // Invoices 
         $m->addItem('Invoices', ['docs',    'type'=>'sale']);
-        $m->addItem('Credit Notes', ['docs','type'=>'credit-note', 'dir'=>'sale']);
+        $m->addItem(['Credit Notes', 'label'=>'coming soon'], ['docs','type'=>'credit-note', 'dir'=>'sale']);
     }
 }

@@ -45,14 +45,14 @@ case 'delete':
 $v = $app->layout->add(['ui'=>'segment']);
 $c = $v->add('Columns');
 
-$gr = $c->addColumn()->add('Grid');
+$gr = $c->addColumn(12)->add('Grid');
 
 $gr->menu->addItem('Add New Supplier')->link(['action'=>'add', 'id'=>false, 'type'=>'supplier']);
 $gr->menu->addItem('Add New Client')->link(  ['action'=>'add', 'id'=>false, 'type'=>'client']);
 $gr->menu->addItem('Add New Producer')->link(['action'=>'add', 'id'=>false, 'type'=>'producer']);
 
 
-$card = $c->addColumn()->add(new ui\Card());
+$card = $c->addColumn(4)->add(new ui\Card());
 
 $gr->table->addClass('selectable');
 $gr->table->on('click', 'tr', new \atk4\ui\jsReload($card, ['id'=>$gr->table->jsRow()->data('id')]))
