@@ -55,7 +55,8 @@ $gr->menu->addItem('Add New Producer')->link(['action'=>'add', 'id'=>false, 'typ
 $card = $c->addColumn(4)->add(new ui\Card());
 
 $gr->table->addClass('selectable');
-$gr->table->on('click', 'tr', new \atk4\ui\jsReload($card, ['id'=>$gr->table->jsRow()->data('id')]))
+$gr->table->addStyle('cursor','pointer');
+$gr->table->onRowClick(new \atk4\ui\jsReload($card, ['id'=>$gr->table->jsRow()->data('id')]))
     ->addClass('active')
     ->siblings()->removeClass('active');
 $gr->setModel(clone $m, ['name', 'type', 'phone']);
