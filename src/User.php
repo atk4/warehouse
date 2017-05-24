@@ -2,6 +2,7 @@
 class User extends Model {
 
     public $table = 'user';
+    public $title_field = 'email';
 
     function init()
     {
