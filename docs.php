@@ -32,6 +32,12 @@ if ($id = $app->stickyGET('id')) {
     $card->setModel($m);
     $card->withEdit();
 
+    $reload_url  = $app->url();
+    $card->add(['Button', 'Make Posted', 'blue fluid'])->on('click', function() use ($m, $reload_url) {
+        $m->makePosted();
+        return new \atk4\ui\jsExpression('document.location = []', [$reload_url]);
+    });
+
     if($m->hasElement('partner_id')) {
         $card = $c->add(new ui\Card());
         $card->setModel($m->ref('partner_id'));
@@ -40,9 +46,24 @@ if ($id = $app->stickyGET('id')) {
 
     $c = $cc->addColumn(12);
 
-    $lines = $c->add('CRUD');
+    if ($m['status'] == 'draft') {
+        $lines = $c->add(['CRUD', 'paginator'=>false]);
+    } else {
+        $lines = $c->add(['Grid', 'paginator'=>false]);
+    }
+    $lines->add(['Header', 'Invoice Lines']);
     $lines->setModel($m->ref('Lines'));
     $lines->menu->addItem('Back')->link($app->url(['id'=>false]));
+
+    if ($m['status'] != 'draft') {
+        $c->add(['Header', 'Related stock effect']);
+        $related = $c->add(['Grid', 'menu'=>false, 'paginator'=>false]);
+        $stock = new Stock($app->db);
+        $stock->join('related.stock_id')->addField('document_id');
+        $stock->addCondition('document_id', $m->id);
+        $related->setModel($stock);
+    }
+
 
     exit;
 

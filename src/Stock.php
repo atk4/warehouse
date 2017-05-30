@@ -13,5 +13,6 @@ class Stock extends Model {
         $this->addField('date', ['type'=>'date', 'default'=>new \DateTime()]);
         $this->addField('description');
         //, 'case when [type]="inventory" then "Inventory adjusted" when [type]="write-off" then "Perished" end');
+        $this->hasMany('Related', new Related());
     }
 }

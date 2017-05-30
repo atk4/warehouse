@@ -10,7 +10,7 @@ class Warehouse extends \atk4\ui\App
 
 
     function __construct($auth = true) {
-        parent::__construct('Warehouse App v0.2');
+        parent::__construct('Warehouse App v0.3');
 
 
         // Connect to database (Heroku or Local)
@@ -66,7 +66,7 @@ class Warehouse extends \atk4\ui\App
         $m->addItem('Current Stock', ['stock']);
 
         // manage.php contains a CRUD which will work with most basic Models
-        $m->addItem('Categories', ['manage', 'model'=>'Category']);
+        $m->addItem('Categories', ['category']);
 
         // production uses a custom page, we want some freedom, so, separate page
         $m->addItem(['Production', 'label'=>'coming soon'], ['production']);
