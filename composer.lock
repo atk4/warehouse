@@ -171,12 +171,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/atk4/ui.git",
-                "reference": "318d7963c0a14c0fa84350af1b5c28b12e962f92"
+                "reference": "5a5eabc0431cfba7bc43e3c20b28f6f0cbb94f0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atk4/ui/zipball/318d7963c0a14c0fa84350af1b5c28b12e962f92",
-                "reference": "318d7963c0a14c0fa84350af1b5c28b12e962f92",
+                "url": "https://api.github.com/repos/atk4/ui/zipball/5a5eabc0431cfba7bc43e3c20b28f6f0cbb94f0c",
+                "reference": "5a5eabc0431cfba7bc43e3c20b28f6f0cbb94f0c",
                 "shasum": ""
             },
             "require": {
@@ -221,7 +221,7 @@
                 "web",
                 "widget"
             ],
-            "time": "2017-05-24 15:25:20"
+            "time": "2017-05-30 11:13:17"
         },
         {
             "name": "fzaninotto/faker",
