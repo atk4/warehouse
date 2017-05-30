@@ -7,6 +7,6 @@ class Client extends Partner {
         $this->addCondition('is_client', true);
 
         $i = $this->hasMany('Invoices', [new Sale()]);
-        $i->addField('invoiced', ['caption'=>'Total Sale', 'field'=>'total', 'aggregate'=>'sum']);
+        $i->addField('invoiced', ['caption'=>'Total Sale', 'field'=>'total', 'aggregate'=>'sum','type'=>'money']);
     }
 }

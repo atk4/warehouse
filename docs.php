@@ -24,6 +24,8 @@ $dir = $app->stickyGET('dir');
 if ($id = $app->stickyGET('id')) {
     $m->load($id);
 
+    $bc = $app->layout->add(['ui'=>'segment'])->add(new ui\Breadcrumb($m['ref']));
+    $bc->addCrumb(get_class($m).'s', ['id'=>false]);
 
     $cc = $app->layout->add('Columns');
     $c = $cc->addColumn(4);
@@ -32,11 +34,13 @@ if ($id = $app->stickyGET('id')) {
     $card->setModel($m);
     $card->withEdit();
 
-    $reload_url  = $app->url();
-    $card->add(['Button', 'Make Posted', 'blue fluid'])->on('click', function() use ($m, $reload_url) {
-        $m->makePosted();
-        return new \atk4\ui\jsExpression('document.location = []', [$reload_url]);
-    });
+    if ($m['status'] == 'draft') {
+        $reload_url  = $app->url();
+        $card->add(['Button', 'Make Posted', 'blue fluid'])->on('click', function() use ($m, $reload_url) {
+            $m->makePosted();
+            return new \atk4\ui\jsExpression('document.location = []', [$reload_url]);
+        });
+    }
 
     if($m->hasElement('partner_id')) {
         $card = $c->add(new ui\Card());
@@ -64,54 +68,13 @@ if ($id = $app->stickyGET('id')) {
         $related->setModel($stock);
     }
 
-
-    exit;
-
-}
-
-
-/*
-switch ($app->stickyGET('action')) {
-case 'edit':
-case 'add':
-    $form = $app->layout->add(['ui'=>'segment'])->add(['Form', 'layout'=>'FormLayout/Columns']);
-
-    $type = $app->stickyGET('type');
-
-    $form->setModel($m);
-    $form->add(['Button','Cancel'])->link(['action'=>false]);
-    $form->onSubmit(function($form) use($type) {
-        $form->model['is_'.$type] = true;
-        $form->model->save();
-        return new \atk4\ui\jsExpression('document.location=[]', [$form->app->url([
-            'id'=>$form->model->id,
-            'action'=>false,
-            'type'=>false
-        ])]);
-    });
-    exit;
-case 'delete':
-    if (isset($_GET['confirm'])) {
-        $m->delete();
-        header('Location: '.$app->url(['action'=>false, 'id'=>false]));
-        exit;
-    }
-
-    $m = $app->layout->add(['Message', 'Are you sure you want to delete '.$m['name'].'?', 'negative']);
-    $m->text->addParagraph('The record will only be marked as deleted. It will remain in the database.');
-    $m->add(['Button', 'Yes', 'red'])->link(['confirm'=>true]);
-    $m->add(['Button', 'No'])->link(['action'=>false]);;
     exit;
 }
- */
 
-//$v = $app->layout->add(['ui'=>'segment']);
-//$c = $v->add('Columns');
-
-$gr = $app->layout->add('Grid');
+$gr = $app->layout->add(['CRUD', 'ops'=>['u'=>false]]);
+$gr->fieldsGrid = ['ref','date','partner','status','net','total'];
 $gr->setModel($m);
-
-$gr->menu->addItem('Add '.get_class($m))->link(['action'=>'add', 'id'=>false]);
+$gr->addColumn('status', new \atk4\ui\TableColumn\Status(['positive'=>['posted', 'paid'], 'disabled'=>['draft']]));
 
 $gr->table->addClass('selectable');
 $gr->table->addStyle('cursor', 'pointer');
