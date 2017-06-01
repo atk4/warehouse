@@ -21,7 +21,7 @@ class Article extends Model {
         $this->addField('producer_product_code');
         $this->addField('brand');
 
-        $this->hasOne('category_id', new Category())
+        $this->hasOne('category_id', [new SelectableCategory(), 'mandatory'=>true])
             ->addTitle();
 
         $this->addField('purchase_price', ['type'=>'money', 'caption'=>'purchase price EXCL VAT']);

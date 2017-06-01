@@ -23,9 +23,9 @@ class Warehouse extends \atk4\ui\App
                 $matches[2],
                 $matches[4]
             );
-            $this->db = new \atk4\data\Persistence_SQL($dsn[0], $dsn[1], $dsn[2]);
+            $this->db = new \atk4\data\Persistence_SQL($dsn[0].';charset=utf8', $dsn[1], $dsn[2]);
         } else {
-            $this->db = new \atk4\data\Persistence_SQL('mysql:host=127.0.0.1;dbname=warehouse', 'root', 'root');
+            $this->db = new \atk4\data\Persistence_SQL('mysql:host=127.0.0.1;dbname=warehouse;charset=utf8', 'root', 'root');
         }
         $this->db->app = $this;
 

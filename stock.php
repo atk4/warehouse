@@ -30,4 +30,4 @@ $cr->menu->addItem(new ui\Manager(['Brands', 'icon'=>'tag']))
     ->setModel(new Brand($app->db));
 
 $cr->menu->addItem(new ui\Manager(['Categories', 'icon'=>'folder']))
-    ->setModel(new Category($app->db));
+    ->setModel(new SelectableCategory($app->db));
