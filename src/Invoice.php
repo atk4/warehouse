@@ -1,7 +1,7 @@
 <?php
 class Invoice extends Document {
 
-    public $contact_type = 'Contact';
+    public $contact_type = 'Partner';
 
     public $type;
 

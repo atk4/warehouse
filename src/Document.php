@@ -16,4 +16,14 @@ class Document extends Model {
         $this->addField('currency', ['enum'=>$this->app->currencies]);
         $this->addField('status', ['enum'=>['draft','validated','posted','paid'], 'default'=>'draft']);
     }
+    public function ref($link, $defaults = [])
+    {
+        $defaults['document'] = $this;
+        return parent::ref($link, $defaults);
+    }
+    public function refModel($link, $defaults = [])
+    {
+        $defaults['document'] = $this;
+        return parent::refModel($link, $defaults);
+    }
 }

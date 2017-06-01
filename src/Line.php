@@ -7,13 +7,20 @@ class Line extends Model {
 
     public $table='line';
 
+    public $document = null;
+
     function init() {
         parent::init();
 
         // We do not need to restrict here, because we won't be using Line outside of Invoice context
         $this->hasOne('document_id', new Invoice());
 
-        $this->hasOne('article_id', new Article());
+        $a = new Article($this->persistence);
+        $a->addCondition([
+            ['primary_supplier_id', null],
+            ['primary_supplier_id', $this->document['partner_id']]
+        ]);
+        $this->hasOne('article_id', $a);
 
         $this->addField('qty', ['type'=>'integer']);
         $this->addField('price', ['type'=>'money']);

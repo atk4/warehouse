@@ -50,7 +50,7 @@ if ($id = $app->stickyGET('id')) {
 
     $c = $cc->addColumn(12);
 
-    if ($m['status'] == 'draft') {
+    if ($m['status'] == 'draft' || $m['status'] == 'validated') {
         $lines = $c->add(['CRUD', 'paginator'=>false]);
     } else {
         $lines = $c->add(['Grid', 'paginator'=>false]);

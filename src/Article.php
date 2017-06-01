@@ -38,5 +38,22 @@ class Article extends Model {
 
         $this->hasMany('Stock', new Stock())
             ->addField('stock', ['aggregate'=>'sum', 'field'=>'qty_increase']);
+
+
+        $this->addExpression('purchase_total', function() {
+            $p = new Purchase($this->persistence);
+            $p->addCondition('status', 'posted');
+            $l = $p->ref('Lines');
+            $l->addCondition('article_id', $this->getElement('id'));
+            return $l->action('fx', ['sum', 'net']);
+        });
+        $this->addExpression('purchase_qty', function() {
+            $p = new Purchase($this->persistence);
+            $p->addCondition('status', 'posted');
+            $l = $p->ref('Lines');
+            $l->addCondition('article_id', $this->getElement('id'));
+            return $l->action('fx', ['sum', 'qty']);
+        });
+        $this->addExpression('purchase_cost', ['[purchase_total] / [purchase_qty]', 'type'=>'money'] );
     }
 }
