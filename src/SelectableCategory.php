@@ -22,5 +22,6 @@ class SelectableCategory extends Category {
         $this->l2->addField('l2_parent_id', ['actual'=>'parent_id']);
 
         $this->addCondition('l2_parent_id', null);
+        $this->setOrder('title');
     }
 }

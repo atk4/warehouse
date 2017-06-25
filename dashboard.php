@@ -19,6 +19,6 @@ $left->add(new ui\EditButton([
 $right = $columns->addColumn();
 $right->add(['Header', $app->company['name'], 'aligned'=>'center', 'icon'=>'circular suitcase']);
 $right->add(new ui\EditButton([
-    'Edit Company Info',
+    'Edit',
     'action'=>new \atk4\ui\jsReload($right)
 ]))->setModel($app->company);

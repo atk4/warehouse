@@ -18,6 +18,14 @@ if ($category_id = $app->stickyGET('category_id')) {
         ->link(['category_id'=>false]);
 }
 
+if ($app->stickyGET('negative')) {
+    $m->addCondition('stock', '<', 0);
+    $msg = $cr->add(['Message','Filters Active:']);
+
+    $msg->add(['Label', 'Only negative stock', 'detail'=>'category', 'iconRight'=>'close'])
+        ->link(['negative'=>false]);
+}
+
 $cr->setModel($m);
 
 
@@ -29,5 +37,7 @@ $cr->addQuickSearch(['name','category','vendor']);
 $cr->menu->addItem(new ui\Manager(['Brands', 'icon'=>'tag']))
     ->setModel(new Brand($app->db));
 
+/*
 $cr->menu->addItem(new ui\Manager(['Categories', 'icon'=>'folder']))
     ->setModel(new SelectableCategory($app->db));
+ */

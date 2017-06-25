@@ -1,7 +1,11 @@
 <?php
-class Warehouse extends \atk4\ui\App 
+class Warehouse extends \atk4\ui\App
 {
 
+    /**
+     * Currently logged in user
+     * @var User
+     */
     public $user;
     public $company;
 
@@ -10,22 +14,17 @@ class Warehouse extends \atk4\ui\App
 
 
     function __construct($auth = true) {
-        parent::__construct('Warehouse App v0.4');
+        if (is_dir('public')) {
+            $this->cdn['atk'] = 'public';
+        }
+        parent::__construct('Warehouse App v0.5');
 
 
         // Connect to database (Heroku or Local)
         if (isset($_ENV['CLEARDB_DATABASE_URL'])) {
-            preg_match('|([a-z]+)://([^:]*)(:(.*))?@([A-Za-z0-9\.-]*)(/([0-9a-zA-Z_/\.]*))|',
-                $_ENV['CLEARDB_DATABASE_URL'],$matches);
-
-            $dsn=array(
-                $matches[1].':host='.$matches[5].';dbname='.$matches[7],
-                $matches[2],
-                $matches[4]
-            );
-            $this->db = new \atk4\data\Persistence_SQL($dsn[0].';charset=utf8', $dsn[1], $dsn[2]);
+            $this->db = new \atk4\data\Persistence_SQL($_ENV['CLEARDB_DATABASE_URL']);
         } else {
-            $this->db = new \atk4\data\Persistence_SQL('mysql:host=127.0.0.1;dbname=warehouse;charset=utf8', 'root', 'root');
+            $this->db = new \atk4\data\Persistence_SQL('mysql:host=127.0.0.1;dbname=warehouse', 'root', 'root');
         }
         $this->db->app = $this;
 
@@ -69,7 +68,7 @@ class Warehouse extends \atk4\ui\App
         // manage.php contains a CRUD which will work with most basic Models
 
         // production uses a custom page, we want some freedom, so, separate page
-        //$m->addItem(['Production', 'label'=>'coming soon'], ['production']);
+        $this->layout->menuLeft->addItem(['Production', 'icon'=>'cogs'], ['production']);
 
         // Stock model changes amount of stocked articles, but can be one of several types.
         // Inventory and write-off can be created by user directly, but Effect is created
@@ -77,7 +76,7 @@ class Warehouse extends \atk4\ui\App
         //$m->addItem(['Inventory', 'label'=>'coming soon'], ['stock', 'type'=>'inventory']);
         //$m->addItem(['Write-off', 'label'=>'coming soon'], ['stock', 'type'=>'write-off']);
 
-        //$m->addItem(['Effect', 'label'=>'coming soon'],    ['effect']);      
+        //$m->addItem(['Effect', 'label'=>'coming soon'],    ['effect']);
 
         // Supply section deals with invoices and payments, but will also affect stock
         $m = $this->layout->leftMenu->addGroup(['Supply', 'icon'=>'shipping']);
@@ -103,8 +102,17 @@ class Warehouse extends \atk4\ui\App
         // Prepaid bill does not have effect on stock but can be converted into invoice
         //$m->addItem(['Prepaid Bills', 'label'=>'coming soon'], ['docs', 'type'=>'prepaid-bill', 'dir'=>'sale']);
 
-        // Invoices 
+        // Invoices
         $m->addItem('Invoices', ['docs',    'type'=>'sale']);
         //$m->addItem(['Credit Notes', 'label'=>'coming soon'], ['docs','type'=>'credit-note', 'dir'=>'sale']);
+
+
+        $a = new Article($this->db);
+        $a->addCondition('stock', '<', 0);
+        $c = $a->action('count')->getOne();
+        if ($c>0) {
+            $this->layout->menuRight->addItem(null, ['stock', 'negative'=>true])->add(['Label', 'There are '.$c.' articles with negative stock', 'red']);
+        }
+
     }
 }

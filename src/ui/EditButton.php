@@ -22,7 +22,7 @@ class EditButton extends \atk4\ui\Button
 
         $vp = $this->add('VirtualPage');
         $vp->set(function($p) use($m, $fields) {
-            $f = $p->add(['Form', 'layout'=>'FormLayout/Columns']);
+            $f = $p->add(['Form', 'layout'=>new \atk4\ui\FormLayout\Columns(['col'=>2])]);
             $f->setModel($m, $fields);
             $f->onSubmit(function($f) {
                 $f->model->save();

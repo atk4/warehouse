@@ -4,6 +4,6 @@
         "psr-4": {"": "src/"}
     },
     "require": {
-        "atk4/ui": "dev-develop-ui-mk2"
+        "atk4/ui": "dev-develop"
     }
 }

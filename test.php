@@ -1,9 +1,11 @@
 <?php
 include'vendor/autoload.php';
 
-$app = new Warehouse();
+$app = new \atk4\ui\App();
+$app->initLayout('Centered');
+            $app->db = new \atk4\data\Persistence_SQL('mysql:host=127.0.0.1;dbname=warehouse;charset=utf8', 'root', 'root');
 
-$cr = $app->layout->add('Form');
+$cr = $app->layout->add('CRUD');
 $cr->setModel(new Brand($app->db));
 
 /*

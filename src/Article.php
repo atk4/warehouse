@@ -56,4 +56,17 @@ class Article extends Model {
         });
         $this->addExpression('purchase_cost', ['[purchase_total] / [purchase_qty]', 'type'=>'money'] );
     }
+
+    function validate($intent = null)
+    {
+        $errors = parent::validate();
+
+        if (!preg_match('/^[0-9]*$/', $this['primary_ean'])) {
+            $errors['primary_ean'] = 'Primary EAN contains invalid characters';
+        }
+        if (!preg_match('/^[0-9]*$/', $this['secondary_ean'])) {
+            $errors['secondary_ean'] = 'Primary EAN contains invalid characters';
+        }
+        return $errors;
+    }
 }

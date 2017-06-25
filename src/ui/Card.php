@@ -53,7 +53,7 @@ class Card extends \atk4\ui\View
 
     function withEdit()
     {
-        $b = $this->add(new EditButton(['Edit', 'icon'=>'edit']), 'Buttons')
+        $b = $this->add(new EditButton(['Edit', 'icon'=>'edit', 'action'=>new \atk4\ui\jsReload($this)]), 'Buttons')
             ->setModel($this->model);
 
         return $this;

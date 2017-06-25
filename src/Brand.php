@@ -7,9 +7,12 @@ class Brand extends Model {
         parent::init();
         $this->hasCompany();
 
+        /*
         $this->hasOne('partner_id', [new Producer(), 'caption'=>'Producer'])
             ->addTitle(['caption'=>'Producer']);
+         */
 
         $this->addField('name');
+        $this->addField('producer');
     }
 }
