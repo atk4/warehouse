@@ -81,7 +81,7 @@ if ($id = $app->stickyGET('id')) {
             'CRUD', 
             'paginator'=>false,
             'formEdit'=>new ui\LineForm(),
-            'formAdd'=>new ui\LineForm()
+           // 'formAdd'=>new ui\LineForm()
         ]);
     } else {
         $lines = $c->add(['Grid', 'paginator'=>false]);
