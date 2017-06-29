@@ -1,0 +1,49 @@
+
+<div class="ui main container basic segment very padded">
+  <h1>{Header}Invoice Header{/}</h1>
+  <div class="ui segment very padded">
+    <div class="ui grid">
+      <div class="left floated seven wide column">
+        <div><b>To:</b>{$partner}</div>
+      </div>
+      <div class="right floated five wide column">
+        <div><b>Invoice Number:</b>{$ref}</div>
+        <div><b>Currency:</b>{$currency}</div>
+        <div><b>Issue Date:</b>{$date}</div>
+        <div><b>Status:</b>{$status}</div>
+      </div>
+    </div>
+    <div class="ui section hidden divider"></div>{Lines}
+    <div class="ui grid">
+      <div class="two wide column"><b>Item</b></div>
+      <div class="two wide column"><b>Qty</b></div>
+      <div class="two wide column"><b>Price</b></div>
+      <div class="two wide column"><b>Tax</b></div>
+      <div class="two wide column"><b>Total</b></div>
+    </div>{rows}{row}
+    <div class="ui grid">
+      <div class="two wide column">{$article}</div>
+      <div class="two wide column">{$qty}</div>
+      <div class="two wide column">{$price}</div>
+      <div class="two wide column">{$tax}</div>
+      <div class="two wide column">{$total}</div>
+    </div>
+    {/}{/}
+    {/}
+    <div class="ui grid">
+      <div class="left floated seven wide column">{Company}
+        <div>
+          <h5>Pay to {$name}:</h5>
+          <div>Bank: {$bank_name}</div>
+          <div>Swift: {$bank_swift}</div>
+          <div>IBAN: {$bank_iban}</div>
+        </div>{/}
+      </div>
+      <div class="right floated five wide column">
+        <div><b>Total Net:</b>{$net}</div>
+        <div><b>Total VAT:</b>{$vat}</div>
+        <div><b>Total Gross:</b>{$total}</div>
+      </div>
+    </div>
+  </div>
+</div>

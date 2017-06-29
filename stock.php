@@ -7,7 +7,7 @@ $cr = $app->layout->add('CRUD');
 
 //$cr->addColumn(new \atk4\ui\TableColumn\Template('<a href="article.php?article_id={$id}"><i class="stack overflow icon"></i> {$name}: {$stock} in stock</a>'));
 
-$cr->fieldsGrid = ['id', 'name', 'vendor', 'category', 'purchase_price', 'purchase_cost', 'sale_price'];
+$cr->fieldsGrid = ['id', 'name', 'vendor', 'category', 'stock'];
 $m = new Article($app->db);
 
 if ($category_id = $app->stickyGET('category_id')) {

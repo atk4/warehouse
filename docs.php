@@ -16,6 +16,11 @@ default:
     // not sure
 }
 
+if ($app->stickyGET('due')) {
+    // must only show documents that are due
+    $m->addCondition('status', 'posted');
+}
+
 
 
 $type = $app->stickyGET('type');
@@ -30,14 +35,35 @@ if ($id = $app->stickyGET('id')) {
     $cc = $app->layout->add('Columns');
     $c = $cc->addColumn(4);
 
+    $print = $app->layout->add('VirtualPage');
+    $print->set(function($page) use($m) {
+        $page->app->initLayout('Centered', ['template'=>new \atk4\ui\Template('{$Content}')]);
+        $page->app->layout->template->tryDel('Header');
+        $page->add(new ui\DocView())->setModel($m);
+    });
+
+
+
     $card = $c->add(new ui\Card());
     $card->setModel($m);
     $card->withEdit();
+    $card->add(['Button', 'Print', 'icon'=>'print'], 'Buttons')->on('click', new \atk4\ui\jsExpression(
+        'window.open([], [], [])',
+        [$print->getURL(), 'print', 'width=1000, height=1100, location=no, menubar=no, scrollbars=yes,toolbar=no,titlebar=no']
+    ));
 
     if ($m['status'] == 'draft') {
         $reload_url  = $app->url();
         $card->add(['Button', 'Make Posted', 'blue fluid'])->on('click', function() use ($m, $reload_url) {
             $m->makePosted();
+            return new \atk4\ui\jsExpression('document.location = []', [$reload_url]);
+        });
+    }
+
+    if ($m['status'] == 'posted') {
+        $reload_url  = $app->url();
+        $card->add(['Button', 'Make Paid', 'green fluid'])->on('click', function() use ($m, $reload_url) {
+            $m->saveAndUnload(['status'=>'paid']);
             return new \atk4\ui\jsExpression('document.location = []', [$reload_url]);
         });
     }
@@ -51,7 +77,12 @@ if ($id = $app->stickyGET('id')) {
     $c = $cc->addColumn(12);
 
     if ($m['status'] == 'draft' || $m['status'] == 'validated') {
-        $lines = $c->add(['CRUD', 'paginator'=>false]);
+        $lines = $c->add([
+            'CRUD', 
+            'paginator'=>false,
+            'formEdit'=>new ui\LineForm(),
+            'formAdd'=>new ui\LineForm()
+        ]);
     } else {
         $lines = $c->add(['Grid', 'paginator'=>false]);
     }

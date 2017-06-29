@@ -16,6 +16,8 @@ $statistic->add(['View', 'in stock','label']);
 
 $button_bar = $c->addColumn(['', 'right aligned'])->add(['ui'=>'buttons', 'right aligned'=>true]);
 
+$app->layout->add(['Message', 'This screen is for debug purposes only', 'warning'])->add(['Text', 'To be removed in the final version of the app']);
+
 $c = $app->layout->add(['ui'=>'segment'])->add(new \atk4\ui\Columns('divided'));
 
 $c1 = $c->addColumn();
@@ -37,4 +39,3 @@ $c2->add(['Table', 'very compact very basic small'])
     ->setModel($article->ref('Stock')->addCondition('qty_increase','<',0), ['date', 'type', 'description', 'qty_increase'])
     ->setLimit(5)
     ->setOrder('date desc');
-

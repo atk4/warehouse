@@ -1,12 +1,12 @@
 <?php
 include'vendor/autoload.php';
 
-$app = new \atk4\ui\App();
-$app->initLayout('Centered');
-            $app->db = new \atk4\data\Persistence_SQL('mysql:host=127.0.0.1;dbname=warehouse;charset=utf8', 'root', 'root');
+$app = new Warehouse();
+//$app->initLayout('Centered');
+            //$app->db = new \atk4\data\Persistence_SQL('mysql:host=127.0.0.1;dbname=warehouse;charset=utf8', 'root', 'root');
 
-$cr = $app->layout->add('CRUD');
-$cr->setModel(new Brand($app->db));
+$f = $app->layout->add(new ui\LineForm());
+$f->setModel(new Line($app->db));
 
 /*
 $cr->addColumn(new \atk4\ui\TableColumn\Template('<a href="article.php?article_id={$id}"><i class="stack overflow icon"></i> {$name}: {$stock} in stock</a>'));

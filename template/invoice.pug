@@ -1,0 +1,71 @@
+.ui.main.container.basic.segment.very.padded
+  h1 {Header}Invoice Header{/}
+  .ui.segment.very.padded
+    .ui.grid
+      .left.floated.seven.wide.column
+        div
+          b To:
+          | {$partner}
+      .right.floated.five.wide.column
+        div
+          b Invoice Number:
+          | {$ref}
+        div
+          b Currency:
+          | {$currency}
+
+        div
+          b Issue Date:
+          | {$date}
+
+        div
+          b Status:
+          | {$status}
+    .ui.section.hidden.divider
+    | {Lines}
+    .ui.grid
+      .two.wide.column
+        b Item
+      .two.wide.column
+        b Qty
+      .two.wide.column
+        b Price
+      .two.wide.column
+        b Tax
+      .two.wide.column
+        b Total
+
+    | {rows}{row}
+    .ui.grid
+      .two.wide.column
+        | {$article}
+      .two.wide.column
+        | {$qty}
+      .two.wide.column
+        | {$price}
+      .two.wide.column
+        | {$tax}
+      .two.wide.column
+        | {$total}
+    | {/}{/}
+    | {/}
+      
+    .ui.grid
+      .left.floated.seven.wide.column
+        | {Company}
+        div
+          h5 Pay to {$name}:
+          div Bank: {$bank_name}
+          div Swift: {$bank_swift}
+          div IBAN: {$bank_iban}
+        | {/}
+      .right.floated.five.wide.column
+        div
+          b Total Net:
+          | {$net}
+        div
+          b Total VAT:
+          | {$vat}
+        div
+          b Total Gross:
+          | {$total}

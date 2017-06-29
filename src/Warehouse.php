@@ -8,6 +8,14 @@ class Warehouse extends \atk4\ui\App
      */
     public $user;
     public $company;
+    public $cdn = [
+        'atk'             => 'public',
+        'jquery'          => 'public',
+        'serialize-object'=> 'public',
+        'semantic-ui'     => 'public',
+        'calendar'        => 'public',
+    ];
+
 
     public $vat_rates = ['21.0', '10.0', '0'];
     public $currencies = ['USD','GBP','EUR'];
@@ -17,7 +25,7 @@ class Warehouse extends \atk4\ui\App
         if (is_dir('public')) {
             $this->cdn['atk'] = 'public';
         }
-        parent::__construct('Warehouse App v0.5');
+        parent::__construct('Warehouse App v0.6');
 
 
         // Connect to database (Heroku or Local)
@@ -53,59 +61,38 @@ class Warehouse extends \atk4\ui\App
 
         $this->initLayout('Admin');
 
-        $this->layout->leftMenu->addItem(['Home', 'icon'=>'home'], ['dashboard']);
+        $this->layout->leftMenu->addItem(['Dashboard', 'icon'=>'home'], ['dashboard']);
+
+        $m = $this->layout->leftMenu->addGroup(['Documents', 'icon'=>'file']);
+
+        // Invoices
+        $m->addItem('Purchase', ['docs',    'type'=>'purchase']);
+        $m->addItem('Sale', ['docs',    'type'=>'sale']);
+        $m->addItem('Internal', ['production']);
+
+        $this->layout->leftMenu->addItem(['Payables', 'icon'=>'visa'], ['docs', 'type'=>'sale', 'due'=>true]);
+        $this->layout->leftMenu->addItem(['Receivables', 'icon'=>'euro'], ['docs', 'type'=>'purchase', 'due'=>true]);
         $this->layout->leftMenu->addItem(['Partners', 'icon'=>'users'], ['partners']);
 
-        $mr = $this->layout->menu->addMenuRight();
-        $mr ->addItem([$this->user['email'], 'icon'=>'user']);
-        $mr ->addItem(['Logout', 'icon'=>'sign out'], ['logout']);
 
-        $this->layout->leftMenu->addItem(['Categories', 'icon'=>'folder open'], ['category']);
+        $m = $this->layout->leftMenu->addGroup(['Catalogue', 'icon'=>'shipping']);
+        $m->addItem('Categories', ['manage', 'model'=>'Supplier']);
+        $m->addItem('Articles', ['stock',    'type'=>'purchase']);
 
-        // Section of our application dealing with current stock flow and history
-        $this->layout->leftMenu->addItem(['Articles', 'icon'=>'barcode'], ['stock']);
-
-        // manage.php contains a CRUD which will work with most basic Models
-
-        // production uses a custom page, we want some freedom, so, separate page
-        $this->layout->menuLeft->addItem(['Production', 'icon'=>'cogs'], ['production']);
-
-        // Stock model changes amount of stocked articles, but can be one of several types.
-        // Inventory and write-off can be created by user directly, but Effect is created
-        // automatically in response to actions on invoices.
-        //$m->addItem(['Inventory', 'label'=>'coming soon'], ['stock', 'type'=>'inventory']);
-        //$m->addItem(['Write-off', 'label'=>'coming soon'], ['stock', 'type'=>'write-off']);
-
-        //$m->addItem(['Effect', 'label'=>'coming soon'],    ['effect']);
-
-        // Supply section deals with invoices and payments, but will also affect stock
-        $m = $this->layout->leftMenu->addGroup(['Supply', 'icon'=>'shipping']);
-        //$m->addItem(['At a glance', 'label'=>'coming soon'], ['supply']);
-
-        // Suppliers is a easy and manageable entity
-        $m->addItem('Suppliers', ['manage', 'model'=>'Supplier']);
-
-        // Invoices and Credit notes will create Effect documents
-        // automatically when changing status. Otherwise, they are same as prepaid bills
-        $m->addItem('Invoices', ['docs',    'type'=>'purchase']);
+        $this->layout->leftMenu->addItem(['Reports', 'icon'=>'line chart'], ['chart']);
 
         // Invoice can be converted into credit note
         //$m->addItem(['Credit Notes', 'label'=>'coming soon'], ['docs','type'=>'credit-note', 'dir'=>'supply']);
 
         //$m->addItem(['Reports', 'label'=>'coming soon'], ['supplier-reports']);
 
-        $m = $this->layout->leftMenu->addGroup(['Sales', 'icon'=>'shop']);
         //$m->addItem(['At a glance', 'label'=>'coming soon'], ['sales']);
 
-        $m->addItem('Clients', ['manage', 'model'=>'Client']);
-
-        // Prepaid bill does not have effect on stock but can be converted into invoice
-        //$m->addItem(['Prepaid Bills', 'label'=>'coming soon'], ['docs', 'type'=>'prepaid-bill', 'dir'=>'sale']);
-
-        // Invoices
-        $m->addItem('Invoices', ['docs',    'type'=>'sale']);
         //$m->addItem(['Credit Notes', 'label'=>'coming soon'], ['docs','type'=>'credit-note', 'dir'=>'sale']);
 
+        $mr = $this->layout->menu->addMenuRight();
+        $mr ->addItem([$this->user['email'], 'icon'=>'user']);
+        $mr ->addItem(['Logout', 'icon'=>'sign out'], ['logout']);
 
         $a = new Article($this->db);
         $a->addCondition('stock', '<', 0);
