@@ -8,15 +8,6 @@ class Warehouse extends \atk4\ui\App
      */
     public $user;
     public $company;
-    public $cdn = [
-        'atk'             => 'public',
-        'jquery'          => 'public',
-        'serialize-object'=> 'public',
-        'semantic-ui'     => 'public',
-        'calendar'        => 'public',
-    ];
-
-
     public $vat_rates = ['21.0', '10.0', '0'];
     public $currencies = ['USD','GBP','EUR'];
 
