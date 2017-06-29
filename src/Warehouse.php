@@ -23,7 +23,8 @@ class Warehouse extends \atk4\ui\App
         if (isset($_ENV['CLEARDB_DATABASE_URL'])) {
             $this->db = \atk4\data\Persistence::connect($_ENV['CLEARDB_DATABASE_URL']);
         } else {
-            $this->db = \atk4\data\Persistence::connect('mysql:host=127.0.0.1;dbname=warehouse', 'root', 'root');
+            $this->db = \atk4\data\Persistence::connect('mysql://bb73fd6656946a:e837b92e@us-cdbr-iron-east-03.cleardb.net/heroku_3d484ea213a4055?reconnect=true');
+            //'mysql:host=127.0.0.1;dbname=warehouse', 'root', 'root');
         }
         $this->db->app = $this;
 
