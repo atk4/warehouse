@@ -62,8 +62,8 @@ class Warehouse extends \atk4\ui\App
         $m->addItem('Sale', ['docs',    'type'=>'sale']);
         $m->addItem('Internal', ['production']);
 
-        $this->layout->leftMenu->addItem(['Payables', 'icon'=>'visa'], ['docs', 'type'=>'sale', 'due'=>true]);
-        $this->layout->leftMenu->addItem(['Receivables', 'icon'=>'euro'], ['docs', 'type'=>'purchase', 'due'=>true]);
+        $this->layout->leftMenu->addItem(['Payables', 'icon'=>'visa'], ['due', 'type'=>'sale']);
+        $this->layout->leftMenu->addItem(['Receivables', 'icon'=>'euro'], ['due', 'type'=>'purchase']);
         $this->layout->leftMenu->addItem(['Partners', 'icon'=>'users'], ['partners']);
 
 

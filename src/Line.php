@@ -18,15 +18,16 @@ class Line extends Model {
         $this->hasOne('document_id', new Invoice());
 
         $a = new Article($this->persistence);
-        if ($this->document && $this->document->hasElement('partner_id')) {
+        if ($this->document && $this->document instanceof Purchase && $this->document->hasElement('partner_id')) {
             $a->addCondition([
                 ['primary_supplier_id', null],
                 ['primary_supplier_id', $this->document['partner_id']]
             ]);
         }
-        $this->hasOne('article_id', $a);
+        $this->hasOne('article_id', [$a, 'required'=>true])
+            ->addTitle();
 
-        $this->addField('qty', ['type'=>'integer']);
+        $this->addField('qty', ['type'=>'integer', 'required'=>true]);
 
         if ($this->used_up === true) {
             $this->addHook('beforeSave', function($m) {
@@ -41,11 +42,11 @@ class Line extends Model {
 
         if (!$this->document instanceof Production) {
 
-            $this->addField('price', ['type'=>'money']);
-            $this->addField('vat_rate', ['enum'=>$this->app->vat_rates]);
+            $this->addField('price', ['type'=>'money', 'required'=>true]);
+            $this->addField('vat_rate', ['enum'=>$this->app->vat_rates, 'mandatory'=>true]);
 
             $this->addExpression('net', ['[qty] * [price]', 'type'=>'money']);
-            $this->addExpression('total', ['[qty] * [price] * (1+vat_rate)', 'type'=>'money']);
+            $this->addExpression('total', ['[qty] * [price] * (1+vat_rate/100)', 'type'=>'money']);
 
         }
 

@@ -18,6 +18,7 @@ default:
 
 if ($app->stickyGET('due')) {
     // must only show documents that are due
+    $m->addCondition('is_paid', false);
     $m->addCondition('status', 'posted');
 }
 
@@ -77,11 +78,14 @@ if ($id = $app->stickyGET('id')) {
     $c = $cc->addColumn(12);
 
     if ($m['status'] == 'draft' || $m['status'] == 'validated') {
+        $f = new ui\LineForm();
+        $f->which_price = $_GET['type'];
+
         $lines = $c->add([
             'CRUD', 
             'paginator'=>false,
-            'formEdit'=>new ui\LineForm(),
-           // 'formAdd'=>new ui\LineForm()
+            'formEdit'=>$f,
+            'formCreate'=>$f,
         ]);
     } else {
         $lines = $c->add(['Grid', 'paginator'=>false]);
@@ -89,6 +93,7 @@ if ($id = $app->stickyGET('id')) {
     $lines->add(['Header', 'Invoice Lines']);
     $lines->setModel($m->ref('Lines'));
     $lines->menu->addItem('Back')->link($app->url(['id'=>false]));
+    $lines->table->addClass('small');
 
     if ($m['status'] != 'draft') {
         $c->add(['Header', 'Related stock effect']);
@@ -103,7 +108,7 @@ if ($id = $app->stickyGET('id')) {
 }
 
 $gr = $app->layout->add(['CRUD', 'ops'=>['u'=>false]]);
-$gr->fieldsGrid = ['ref','date','partner','status','net','total'];
+$gr->fieldsGrid = ['ref','date','partner','status', 'is_paid','net','total'];
 $gr->setModel($m);
 $gr->addColumn('status', new \atk4\ui\TableColumn\Status(['positive'=>['posted', 'paid'], 'disabled'=>['draft']]));
 

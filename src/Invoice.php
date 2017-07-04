@@ -2,6 +2,7 @@
 class Invoice extends Document {
 
     public $contact_type = 'Partner';
+    public $j_invoice;
 
     public $type;
 
@@ -16,6 +17,8 @@ class Invoice extends Document {
         $l->addField('total', ['aggregate'=>'sum','type'=>'money']);
         $l->addField('net', ['aggregate'=>'sum','type'=>'money']);
 
+        $this->j_invoice->addField('is_paid', ['type'=>'boolean']);
+
         if ($this->type) {
             $this->addCondition('type', $this->type);
         }
@@ -25,6 +28,10 @@ class Invoice extends Document {
     {
         $this->atomic(function() {
             $effect = $this->type == 'sale' ? -1 : 1;
+
+            if ($this['total'] == 0) {
+                throw new \atk4\data\ValidationException(['total'=>'This invoice is empty.']);
+            }
 
 
 
@@ -46,5 +53,10 @@ class Invoice extends Document {
             $this['status'] = 'posted';
             $this->save();
         });
+    }
+
+    function pay() {
+        $this['is_paid'] = true;
+        $this->saveAndUnload();
     }
 }

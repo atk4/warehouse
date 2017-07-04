@@ -14,7 +14,7 @@ class Document extends Model {
         $this->addField('ref', ['required'=>true]);
         $this->addField('date', ['type'=>'date']);
         $this->addField('currency', ['enum'=>$this->app->currencies]);
-        $this->addField('status', ['enum'=>['draft','validated','posted','paid'], 'default'=>'draft']);
+        $this->addField('status', ['enum'=>['draft','validated','posted'], 'default'=>'draft']);
     }
     public function ref($link, $defaults = [])
     {
