@@ -63,7 +63,7 @@ $gr->setModel(clone $m, ['name', 'type', 'phone']);
 
 $card->setModel($m);
 if ($m->loaded()) {
-    $card->add(['Button', 'Edit', 'icon'=>'edit'], 'Buttons')->link(['action'=>'edit']);
+    $card->add(['Button', 'Edit', 'icon'=>'edit'], 'Buttons')->link(['action'=>'edit', 'type'=>strtolower($m['type'])]);
     $card->add(['Button', 'Delete', 'icon'=>'red delete'], 'Buttons')->link(['action'=>'delete']);
 } else {
     $card->template->del('has_buttons');
