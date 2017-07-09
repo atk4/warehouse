@@ -4,45 +4,60 @@
   <div class="ui segment very padded">
     <div class="ui grid">
       <div class="left floated seven wide column">
-        <div><b>To:</b>{$partner}</div>
+        <sp class="ui large grey basic label">Invoice {$ref}</sp>
+        <div class="ui hidden divider"></div><span>To:</span>
+        <h3 style="margin-top: 0;">{$partner}</h3>
       </div>
       <div class="right floated five wide column">
-        <div><b>Invoice Number:</b>{$ref}</div>
-        <div><b>Currency:</b>{$currency}</div>
-        <div><b>Issue Date:</b>{$date}</div>
-        <div><b>Status:</b>{$status}</div>
+        <div class="ui green right ribbon large label" style="left: calc(100% +  3rem  +  1.2em );">{$status}</div>
+        <div class="ui hidden divider"></div>
+        <div class="ui middle aligned divided relaxed list">
+          <div class="item"><span class="right floated content">{$currency}</span><strong>Currency:</strong></div>
+          <div class="item"><span class="right floated content">{$date}</span><strong>Issue Date:</strong></div>
+        </div>
       </div>
     </div>
     <div class="ui section hidden divider"></div>{Lines}
-    <div class="ui grid">
-      <div class="two wide column"><b>Item</b></div>
-      <div class="two wide column"><b>Qty</b></div>
-      <div class="two wide column"><b>Price</b></div>
-      <div class="two wide column"><b>Tax</b></div>
-      <div class="two wide column"><b>Total</b></div>
-    </div>{rows}{row}
-    <div class="ui grid">
-      <div class="two wide column">{$article}</div>
-      <div class="two wide column">{$qty}</div>
-      <div class="two wide column">{$price}</div>
-      <div class="two wide column">{$tax}</div>
-      <div class="two wide column">{$total}</div>
-    </div>
-    {/}{/}
-    {/}
+    <table class="ui very basic celled table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th class="center aligned">Qty</th>
+          <th class="right aligned">Price</th>
+          <th class="right aligned">Tax</th>
+          <th class="right aligned">Total</th>
+        </tr>
+      </thead>{rows}{row}
+      <tbody>
+        <tr>
+          <td>Figūrzāģis 400W BJS400 BESK</td>
+          <td class="center aligned">{$qty}</td>
+          <td class="right aligned">{$price}</td>
+          <td class="right aligned">{$tax}</td>
+          <td class="right aligned">{$total}</td>
+        </tr>
+      </tbody>{/}{/}
+      {/}
+    </table>
+    <div class="ui section hidden divider"></div>
     <div class="ui grid">
       <div class="left floated seven wide column">{Company}
         <div>
-          <h5>Pay to {$name}:</h5>
-          <div>Bank: {$bank_name}</div>
-          <div>Swift: {$bank_swift}</div>
-          <div>IBAN: {$bank_iban}</div>
+          <h4 class="ui dividing header"><span style="font-weight:normal;">Pay to </span>{$name}</h4>
+          <div class="ui list">
+            <div class="item"><span class="right floated content">{$bank_name}</span><strong>Bank: </strong></div>
+            <div class="item"><span class="right floated content">{$bank_swift}</span><strong>Swift: </strong></div>
+            <div class="item"><span class="right floated content">{$bank_iban}</span><strong>IBAN: </strong></div>
+          </div>
         </div>{/}
       </div>
       <div class="right floated five wide column">
-        <div><b>Total Net:</b>{$net}</div>
-        <div><b>Total VAT:</b>{$vat}</div>
-        <div><b>Total Gross:</b>{$total}</div>
+        <div class="ui list">
+          <div class="item"><span class="right floated content">{$net}</span><strong>Total Net:</strong></div>
+          <div class="item"><span class="right floated content">{$vat}</span><strong>Total VAT:</strong></div>
+          <div class="ui divider"></div>
+          <div class="ui item massive header" style="margin-top:0;"><span class="right floated content">{$total}</span><strong>Total Gross:</strong></div>
+        </div>
       </div>
     </div>
   </div>

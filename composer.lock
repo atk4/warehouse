@@ -171,12 +171,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/atk4/ui.git",
-                "reference": "a14999c33c6f3725dee165db9658918c10d379b2"
+                "reference": "957efbcc454093e9aa7d10229238241c90656147"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atk4/ui/zipball/a14999c33c6f3725dee165db9658918c10d379b2",
-                "reference": "a14999c33c6f3725dee165db9658918c10d379b2",
+                "url": "https://api.github.com/repos/atk4/ui/zipball/957efbcc454093e9aa7d10229238241c90656147",
+                "reference": "957efbcc454093e9aa7d10229238241c90656147",
                 "shasum": ""
             },
             "require": {
@@ -221,7 +221,7 @@
                 "web",
                 "widget"
             ],
-            "time": "2017-06-29 10:02:56"
+            "time": "2017-07-09 11:20:43"
         },
         {
             "name": "fzaninotto/faker",
@@ -229,26 +229,26 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "617e3fe04b4adbdda3315c3ff0d38c794968c274"
+                "reference": "83ade5f05d0a7dcfc7c38c7b5fbcaca8863436b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/617e3fe04b4adbdda3315c3ff0d38c794968c274",
-                "reference": "617e3fe04b4adbdda3315c3ff0d38c794968c274",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/83ade5f05d0a7dcfc7c38c7b5fbcaca8863436b5",
+                "reference": "83ade5f05d0a7dcfc7c38c7b5fbcaca8863436b5",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3.3|^7.0"
+                "php": "^5.3.3 || ^7.0"
             },
             "require-dev": {
                 "ext-intl": "*",
-                "phpunit/phpunit": "~4.0||~5.0",
-                "squizlabs/php_codesniffer": "~1.5"
+                "phpunit/phpunit": "^4.0 || ^5.0",
+                "squizlabs/php_codesniffer": "^1.5"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6.x-dev"
+                    "dev-master": "1.7-dev"
                 }
             },
             "autoload": {
@@ -271,7 +271,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2017-06-26 11:43:23"
+            "time": "2017-07-07 15:11:58"
         }
     ],
     "packages-dev": [],

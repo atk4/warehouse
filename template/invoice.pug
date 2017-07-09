@@ -3,69 +3,108 @@
   .ui.segment.very.padded
     .ui.grid
       .left.floated.seven.wide.column
-        div
-          b To:
-          | {$partner}
+          sp.ui.large.grey.basic.label
+            | Invoice {$ref}
+          .ui.hidden.divider
+          span To:
+          h3(style="margin-top: 0") {$partner}
       .right.floated.five.wide.column
-        div
-          b Invoice Number:
-          | {$ref}
-        div
-          b Currency:
-          | {$currency}
-
-        div
-          b Issue Date:
-          | {$date}
-
-        div
-          b Status:
-          | {$status}
+        .ui.green.right.ribbon.large.label(style="left: calc(100% +  3rem  +  1.2em )") {$status}
+        .ui.hidden.divider
+        .ui.middle.aligned.divided.relaxed.list
+          //- .item
+          //-   span.right.floated.content {$ref}
+          //-   strong Invoice Number:
+          .item
+            span.right.floated.content {$currency}
+            strong Currency:
+          .item
+            span.right.floated.content {$date}
+            strong Issue Date:
+          //- .item
+          //-   span.right.floated.content {$status}
+          //-   strong Status:
     .ui.section.hidden.divider
     | {Lines}
-    .ui.grid
-      .two.wide.column
-        b Item
-      .two.wide.column
-        b Qty
-      .two.wide.column
-        b Price
-      .two.wide.column
-        b Tax
-      .two.wide.column
-        b Total
+    table.ui.very.basic.celled.table
+      thead
+        tr
+          th Item
+          th.center.aligned Qty
+          th.right.aligned Price
+          th.right.aligned Tax
+          th.right.aligned Total
+      | {rows}{row}
+      tbody
+        tr
+          //- td
+          //-   | {$article}
+          td
+            | Figūrzāģis 400W BJS400 BESK
+          td.center.aligned
+            | {$qty}
+          td.right.aligned
+            | {$price}
+          td.right.aligned
+            | {$tax}
+          td.right.aligned
+            | {$total}
+      | {/}{/}
+      | {/}
 
-    | {rows}{row}
-    .ui.grid
-      .two.wide.column
-        | {$article}
-      .two.wide.column
-        | {$qty}
-      .two.wide.column
-        | {$price}
-      .two.wide.column
-        | {$tax}
-      .two.wide.column
-        | {$total}
-    | {/}{/}
-    | {/}
+    .ui.section.hidden.divider
+    //- .ui.grid
+    //-   .two.wide.column
+    //-     b Item
+    //-   .two.wide.column
+    //-     b Qty
+    //-   .two.wide.column
+    //-     b Price
+    //-   .two.wide.column
+    //-     b Tax
+    //-   .two.wide.column
+    //-     b Total
+
+    //- | {rows}{row}
+    //- .ui.grid
+    //-   .two.wide.column
+    //-     | {$article}
+    //-   .two.wide.column
+    //-     | {$qty}
+    //-   .two.wide.column
+    //-     | {$price}
+    //-   .two.wide.column
+    //-     | {$tax}
+    //-   .two.wide.column
+    //-     | {$total}
+    //- | {/}{/}
+    //- | {/}
       
     .ui.grid
       .left.floated.seven.wide.column
         | {Company}
         div
-          h5 Pay to {$name}:
-          div Bank: {$bank_name}
-          div Swift: {$bank_swift}
-          div IBAN: {$bank_iban}
+          h4.ui.dividing.header #[span(style="font-weight:normal") Pay to ]{$name}
+          .ui.list
+            .item
+              span.right.floated.content {$bank_name}
+              strong Bank: 
+            .item
+              span.right.floated.content {$bank_swift}
+              strong Swift: 
+            .item
+              span.right.floated.content {$bank_iban}
+              strong IBAN: 
         | {/}
       .right.floated.five.wide.column
-        div
-          b Total Net:
-          | {$net}
-        div
-          b Total VAT:
-          | {$vat}
-        div
-          b Total Gross:
-          | {$total}
+        .ui.list
+          .item
+            span.right.floated.content {$net}
+            strong Total Net:
+          .item
+            span.right.floated.content {$vat}
+            strong Total VAT:
+          .ui.divider
+          .ui.item.massive.header(style="margin-top:0")
+            span.right.floated.content {$total}
+            strong Total Gross:
