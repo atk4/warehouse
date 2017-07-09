@@ -4,7 +4,7 @@ namespace ui;
 class DocView extends \atk4\ui\View {
     public $defaultTemplate = './template/invoice.html';
 
-    function setModel($m) {
+    function setModel(\atk4\data\Model $m) {
         $this->template->set($m);
 
         $this->add('Lister', 'Lines')->setModel($m->ref('Lines'));
