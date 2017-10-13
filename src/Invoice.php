@@ -12,6 +12,7 @@ class Invoice extends Document {
         $this->j_invoice = $this->join('invoice.document_id');
         $this->j_invoice->hasOne('partner_id', new $this->contact_type())
             ->addTitle();
+        $this->getElement('partner_id')->required = true;
 
         $l =$this->hasMany('Lines', new Line());
         $l->addField('total', ['aggregate'=>'sum','type'=>'money']);

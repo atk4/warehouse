@@ -110,7 +110,7 @@ if ($id = $app->stickyGET('id')) {
 $gr = $app->layout->add(['CRUD', 'ops'=>['u'=>false]]);
 $gr->fieldsGrid = ['ref','date','partner','status', 'is_paid','net','total'];
 $gr->setModel($m);
-$gr->addColumn('status', new \atk4\ui\TableColumn\Status(['positive'=>['posted', 'paid'], 'disabled'=>['draft']]));
+$gr->addDecorator('status', new \atk4\ui\TableColumn\Status(['positive'=>['posted', 'paid'], 'disabled'=>['draft']]));
 
 $gr->table->addClass('selectable');
 $gr->table->addStyle('cursor', 'pointer');

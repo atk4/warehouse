@@ -1,8 +1,9 @@
 {
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {"": "src/"}
     },
     "require": {
-        "atk4/ui": "*"
+        "atk4/ui": "dev-feature/grid-status-fixes"
     }
 }
